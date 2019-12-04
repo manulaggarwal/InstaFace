@@ -7,6 +7,7 @@ import "./App.css";
 import { simpleAction } from "./actions/simpleAction";
 
 class App extends React.Component {
+
   simpleAction = () => {
     this.props.simpleAction();
   };
