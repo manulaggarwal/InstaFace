@@ -1,7 +1,7 @@
 export const facebook = {
     init: () => {
         window.fbAsyncInit = function () {
-            console.log("FB SDK Initialized ", process.env);
+            console.log("FB SDK Initialized ");
             window.FB.init({
                 appId: process.env.FB_APP_ID,
                 autoLogAppEvents: true,
