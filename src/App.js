@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./App.css";
 import { useTranslation } from 'react-i18next';
 import { simpleAction } from "./actions/simpleAction";
+import { Logo } from './components';
 
 function Page() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ class App extends React.Component {
   render() {
     return (
       <Suspense fallback="Loading...">
+        <Logo></Logo>
         <div className="App">
           <Page></Page>
           <button onClick={this.simpleAction}>Test redux action</button>
