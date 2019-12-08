@@ -4,6 +4,7 @@ import "./App.css";
 import { useTranslation } from 'react-i18next';
 import { simpleAction } from "./actions/simpleAction";
 import { Logo } from './components';
+import FacebookLogin from 'react-facebook-login';
 
 function Page() {
   const { t } = useTranslation();
@@ -18,6 +19,14 @@ class App extends React.Component {
     this.props.simpleAction();
   };
 
+  responseFacebook = (response) => {
+    console.log(response);
+  }
+
+  facebookLoginClick = (e) => {
+    console.log(e);
+  }
+
   render() {
     return (
       <Suspense fallback="Loading...">
@@ -26,6 +35,12 @@ class App extends React.Component {
           <Page></Page>
           <button onClick={this.simpleAction}>Test redux action</button>
           <pre>{JSON.stringify(this.props)}</pre>
+          <FacebookLogin
+            appId={process.env.REACT_APP_FB_APP_ID}
+            autoLoad={false}
+            fields="name,email,picture"
+            onClick={this.facebookLoginClick}
+            callback={this.responseFacebook} />
         </div>
       </Suspense>
     );
