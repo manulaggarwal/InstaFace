@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./App.css";
 import { useTranslation } from 'react-i18next';
 import { simpleAction } from "./actions/simpleAction";
-import { Logo } from './components';
+import { Header } from './containers';
 import FacebookLogin from 'react-facebook-login';
 
 function Page() {
@@ -12,6 +12,10 @@ function Page() {
     <div>{t('title')}</div>
   )
 }
+
+const Loading = () => (<div>
+  <span>Loading...</span>
+</div>)
 
 class App extends React.Component {
 
@@ -29,12 +33,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <Suspense fallback="Loading...">
-        <Logo></Logo>
+      <Suspense fallback={<Loading></Loading>}>
+        <Header></Header>
         <div className="App">
           <Page></Page>
-          <button onClick={this.simpleAction}>Test redux action</button>
-          <pre>{JSON.stringify(this.props)}</pre>
           <FacebookLogin
             appId={process.env.REACT_APP_FB_APP_ID}
             autoLoad={false}

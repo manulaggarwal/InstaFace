@@ -1,0 +1,11 @@
+.language-main{
+    width: 20%;
+}
+
+.language-main .form-control {
+    border: none;
+}
+
+.language-main .form-control:focus {
+    box-shadow: 0 0 0 0.2rem lightgray;
+}

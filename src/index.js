@@ -2,16 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
-import App from "./App";
+import { Router } from 'react-router';
+import createRoutes from './routes';
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./store";
+import { createBrowserHistory } from 'history';
 import './i18n';
 
-//facebook.init();
+const store = configureStore();
+const routes = createRoutes(store);
+const history = createBrowserHistory();
 
 ReactDOM.render(
-    <Provider store={configureStore()}>
-        <App />
+    <Provider store={store}>
+        <Router history={history}>
+            {routes}
+        </Router>
     </Provider>,
     document.getElementById("root")
 );
