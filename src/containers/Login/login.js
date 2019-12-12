@@ -44,7 +44,7 @@ class Login extends React.Component {
                     <Col md="12" className="app-fb">
                         <FacebookLogin
                             appId={process.env.REACT_APP_FB_APP_ID}
-                            autoLoad={false}
+                            autoLoad={true}
                             fields="name,email,picture"
                             callback={this.responseFacebook}
                         />

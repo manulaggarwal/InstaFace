@@ -14,6 +14,19 @@
     padding: 25px;
 }
 
+.header-user-icon:hover {
+    cursor: pointer;
+}
+
 .header-user-icon>i{
     font-size: larger;
+}
+
+.header-user-pic {
+    padding: 0;
+    text-align: right;
+}
+
+.header-user-pic>img {
+    border-radius: 24px;
 }

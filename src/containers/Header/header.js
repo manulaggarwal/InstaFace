@@ -1,19 +1,24 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Image } from 'react-bootstrap';
 import { Logo, Language } from '../../components';
 import { changeLanguage } from '../../actions/userAction';
+import { withRouter } from "react-router-dom";
 import './header.css';
 class Header extends React.Component {
 
     constructor(props) {
         super(props);
         this.toggleLanguage = this.toggleLanguage.bind(this);
+        this.clickAccount = this.clickAccount.bind(this);
     }
 
     toggleLanguage(lng) {
-        console.log(lng);
         this.props.toggleLanguage(lng);
+    }
+
+    clickAccount() {
+        this.props.history.push("/account");
     }
 
     render() {
@@ -26,8 +31,16 @@ class Header extends React.Component {
                     </div>
                 </Col>
                 <Col md="2">
-                    <div className="header-user-icon">
-                        <i className="fas fa-user"></i>
+                    <div onClick={() => { this.clickAccount() }} className="header-user-icon">
+                        <Row>
+                            <Col md="6" className="header-user-pic">
+                                <Image width="24px" height="24px" src={this.props.user.picture.data.url}></Image>
+                            </Col>
+                            <Col md="6">
+                                <span>&nbsp;{this.props.user.name.split(" ")[0]}</span>
+                            </Col>
+                        </Row>
+
                     </div>
                 </Col>
                 <Col md="2" style={{ margin: "auto" }}>
@@ -54,21 +67,17 @@ class Header extends React.Component {
                     </Col>
                 </Row>
             )
-
-
-
-
     }
-
 }
 
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.userReducer.userDetails.isLogged
+    isLoggedIn: state.userReducer.userDetails.isLogged,
+    user: state.userReducer.userDetails
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleLanguage: lng => dispatch(changeLanguage(lng))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
