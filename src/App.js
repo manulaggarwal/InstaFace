@@ -1,60 +1,57 @@
 import React, { Suspense } from "react";
 import { connect } from "react-redux";
 import "./App.css";
-import { useTranslation } from 'react-i18next';
-import { simpleAction } from "./actions/simpleAction";
-import { Header } from './containers';
-import FacebookLogin from 'react-facebook-login';
+import { changeLanguage } from "./actions/userAction";
+import i18n from './i18n';
+import { withRouter } from "react-router-dom";
+import { Row, Col, Container } from 'react-bootstrap';
+import { Layout } from "./components";
+import { Login } from "./containers";
 
-function Page() {
-  const { t } = useTranslation();
-  return (
-    <div>{t('title')}</div>
-  )
-}
 
 const Loading = () => (<div>
-  <span>Loading...</span>
+  <h4>Loading...</h4>
 </div>)
 
 class App extends React.Component {
 
-  simpleAction = () => {
-    this.props.simpleAction();
-  };
-
-  responseFacebook = (response) => {
-    console.log(response);
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: i18n.language
+    }
   }
 
-  facebookLoginClick = (e) => {
-    console.log(e);
+  componentDidMount() {
+    i18n.init(() => {
+      this.props.changeLanguage(i18n.language);
+    })
   }
 
   render() {
     return (
       <Suspense fallback={<Loading></Loading>}>
-        <Header></Header>
-        <div className="App">
-          <Page></Page>
-          <FacebookLogin
-            appId={process.env.REACT_APP_FB_APP_ID}
-            autoLoad={false}
-            fields="name,email,picture"
-            onClick={this.facebookLoginClick}
-            callback={this.responseFacebook} />
-        </div>
+        <Layout>
+          <Container>
+            <Row className="app-header-spacing"></Row>
+            <Row>
+              <Col md="12">
+                <Login language={this.state.language}></Login>
+              </Col>
+            </Row>
+          </Container>
+        </Layout>
       </Suspense>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state
+  language: state.userReducer
 });
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
+  changeLanguage: (obj) => dispatch(changeLanguage(obj))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

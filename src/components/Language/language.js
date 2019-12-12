@@ -1,10 +1,10 @@
 import React from 'react';
-import i18n from '../../i18n';
 import './language.css';
 
-function Language() {
+function Language(props) {
     const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng.target.value);
+        console.log("Language ", props);
+        props.language(lng.target.value);
     }
     return (
         <div className="language-main">

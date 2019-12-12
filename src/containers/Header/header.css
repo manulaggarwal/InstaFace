@@ -4,16 +4,8 @@
     display: flex;
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     backdrop-filter: blur(2px);
-}
-.header-logo{
-    flex: 0.8;
-}
-
-.header-language{
-    flex: 0.2;
-    text-align: center;
-    width: 50%;
-    margin: auto;
+    z-index: 1;
 }
