@@ -29,6 +29,7 @@ class App extends React.Component {
   }
 
   render() {
+    let isLoggedIn = this.props.user.userDetails.isLogged;
     return (
       <Suspense fallback={<Loading></Loading>}>
         <Layout>
@@ -36,7 +37,7 @@ class App extends React.Component {
             <Row className="app-header-spacing"></Row>
             <Row>
               <Col md="12">
-                <Login language={this.state.language}></Login>
+                {isLoggedIn ? null : <Login language={this.state.language}></Login>}
               </Col>
             </Row>
           </Container>
@@ -47,7 +48,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  language: state.userReducer
+  user: state.userReducer
 });
 
 const mapDispatchToProps = dispatch => ({

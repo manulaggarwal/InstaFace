@@ -9,3 +9,11 @@
     backdrop-filter: blur(2px);
     z-index: 1;
 }
+
+.header-user-icon {
+    padding: 25px;
+}
+
+.header-user-icon>i{
+    font-size: larger;
+}

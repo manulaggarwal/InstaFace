@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { userDetails } from '../../actions/userAction';
 
 function LoginTitle() {
     const { t } = useTranslation();
@@ -23,6 +24,10 @@ class Login extends React.Component {
     }
 
     responseFacebook(response) {
+        if (response.userID) {
+            const { email, picture, userID, name } = response;
+            this.props.storeUserDetails({ email, picture, userID, name, isLogged: true });
+        }
         this.props.history.push("/home");
     }
 
@@ -50,8 +55,12 @@ class Login extends React.Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    storeUserDetails: data => dispatch(userDetails(data))
+});
+
 const mapStateToProps = state => ({
     language: state.userReducer
 });
 
-export default connect(mapStateToProps, null)(withRouter(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
