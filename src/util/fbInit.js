@@ -1,21 +1,14 @@
+import { fetchUserDetails as apiUserDetails } from '../services/fbApi';
+
 export const loginUser = () => new Promise((resolve, reject) => {
     window.FB.login(() => {
         fetchUserDetails().then(user => resolve(user));
     })
 })
 
-export const fetchUserDetails = () => new Promise((resolve, reject) => {
-    window.FB.api("/me", { fields: "name,email,picture,photos" }, me => {
-        return resolve({
-            userReducer: {
-                userDetails: {
-                    ...me,
-                    isLogged: true
-                }
-            }
-        });
-    })
-})
+export const fetchUserDetails = (fields) => {
+    return apiUserDetails(fields);
+}
 export const canUserAutoLogin = (FB = window.FB) => new Promise((resolve, reject) => {
     FB.getLoginStatus(loginStatus => {
         if (loginStatus.status === "connected") {
@@ -36,45 +29,5 @@ export const fbInit = () => new Promise((resolve, reject) => {
         });
         return resolve();
     }
-    // let st;
-    // FB.getLoginStatus(loginStatus => {
-    //     st = loginStatus;
-    // if (loginStatus.status === "connected") {
-    //     return FB.api("/me", { fields: "name,email,picture,photos" }, me => ({
-    //         userReducer: {
-    //             userDetatils: {
-    //                 ...me,
-    //                 isLogged: true
-    //             }
-    //         }
-    //     }));
-    // } else {
-
-    //     return {
-    //         userReducer: {
-    //             userDetatils: {
-    //                 isLogged: false
-    //             }
-    //         }
-    //     }
-    // }
-    //})
-    //console.log("ST:::: ", st);
-    // let a = Promise.resolve(FB.getLoginStatus(res => res.status === "connected" ? FB.api("/me", { fields: "name,email,picture,photos" }, me => ({
-    //     userReducer: {
-    //         userDetatils: {
-    //             ...me,
-    //             isLogged: true
-    //         }
-    //     }
-    // })) : {
-    //         userReducer: {
-    //             userDetatils: {
-    //                 isLogged: false
-    //             }
-    //         }
-    //     }));
-    //console.log("PPPP  ", a.then(o => { console.log(o); }));
-    //return FB;
 });
 

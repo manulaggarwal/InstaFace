@@ -17,6 +17,7 @@ function userDetails(state = {}, action) {
 }
 
 
+
 const userReducer = combineReducers({
     changeLanguage,
     userDetails

@@ -14,7 +14,12 @@ import App from './App';
 fbInit().then(() => {
     canUserAutoLogin().then(flag => {
         if (flag) {
-            fetchUserDetails().then(initialStore => {
+            fetchUserDetails().then(details => {
+                const initialStore = {
+                    userReducer: {
+                        userDetails: details
+                    }
+                }
                 load(initialStore);
             })
         } else load({});
@@ -37,26 +42,6 @@ const load = (initialStore) => {
         document.getElementById("root")
     );
 };
-
-// fbInit().then(init => {
-//     console.log("Init ", init);
-//     const initialStore = init;
-//     console.log(initialStore);
-//     const store = configureStore();
-//     const routes = createRoutes(store);
-//     const history = createBrowserHistory();
-
-//     ReactDOM.render(
-//         <Provider store={store}>
-//             <Router history={history}>
-//                 {routes}
-//             </Router>
-//         </Provider>,
-//         document.getElementById("root")
-//     );
-// });
-
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

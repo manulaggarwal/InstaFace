@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Row, Col, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { userDetails } from '../../actions/userAction';
-import { loginUser } from '../../util/fbInit';
+import { userDetails, userLogin } from '../../actions/userAction';
+
 function LoginTitle() {
     const { t } = useTranslation();
     return (
@@ -23,6 +23,12 @@ class Login extends React.Component {
         this.doFbLogin = this.doFbLogin.bind(this);
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.isUserLoggedIn) {
+            this.props.history.push("/home");
+        }
+    }
+
     responseFacebook(response) {
         if (response.userID) {
             const { email, picture, userID, name } = response;
@@ -32,14 +38,13 @@ class Login extends React.Component {
     }
 
     doFbLogin() {
-        loginUser().then(user => {
-            this.props.storeUserDetails(user.userReducer.userDetails);
-            this.props.history.push("/home");
-        })
+        const fields = {
+            fields: "name, email, picture"
+        }
+        this.props.loginUser(fields);
     }
 
     render() {
-
         return (
             <Container>
                 <Row>
@@ -61,10 +66,12 @@ class Login extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    storeUserDetails: data => dispatch(userDetails(data))
+    storeUserDetails: data => dispatch(userDetails(data)),
+    loginUser: fields => dispatch(userLogin(fields))
 });
 
 const mapStateToProps = state => ({
+    isUserLoggedIn: state.userReducer.userDetails,
     language: state.userReducer
 });
 
