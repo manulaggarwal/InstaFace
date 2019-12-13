@@ -11,6 +11,7 @@ function changeLanguage(state = {}, action) {
 
 function userDetails(state = {}, action) {
     switch (action.type) {
+        case "USER_ALBUM_PHOTOS_SUCCESS":
         case "USER_DETAILS": return Object.assign({}, state, action.payload);
         default: return state;
     }

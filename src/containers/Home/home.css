@@ -1,0 +1,14 @@
+.home-fb-feed-photos {
+    /* margin-right: 10px; */
+    margin-bottom: 10px;
+}
+
+.home-fb-feed-main {
+    height: auto;
+    overflow: scroll;
+    text-align: center;
+}
+
+.home-feed-margin {
+    border-left: 1px solid lightgray;
+}

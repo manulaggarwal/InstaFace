@@ -3,7 +3,7 @@ import { fetchUserDetails as apiUserDetails } from '../services/fbApi';
 export const loginUser = () => new Promise((resolve, reject) => {
     window.FB.login(() => {
         fetchUserDetails().then(user => resolve(user));
-    })
+    }, { scope: 'user_location, user_friends, user_photos, user_likes, user_videos' })
 })
 
 export const fetchUserDetails = (fields) => {

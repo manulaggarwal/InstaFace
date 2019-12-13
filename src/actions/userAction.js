@@ -1,4 +1,4 @@
-import { fetchUserDetails } from '../services/fbApi';
+import { fetchUserDetails, fetchUserPhotos as getUserPhotos } from '../services/fbApi';
 
 export const changeLanguage = data => dispatch => dispatch({
     type: "CHANGE_LANGUAGE",
@@ -22,5 +22,12 @@ export const userLogin = data => dispatch => {
         fetchUserDetails(data).then(user => {
             return dispatch(userDetails(user));
         })
-    })
+    }, { scope: 'user_location, user_friends, user_photos, user_likes, user_videos' })
+}
+
+export const fetchUserPhotos = () => dispatch => {
+    getUserPhotos().then(d => dispatch({
+        type: "USER_ALBUM_PHOTOS_SUCCESS",
+        payload: d
+    }))
 }

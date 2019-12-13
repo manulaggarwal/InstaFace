@@ -5,7 +5,6 @@ import { Row, Col, Image, Container } from 'react-bootstrap';
 class Account extends React.Component {
 
     render() {
-
         return (<Container>
             <Row>
                 <Col>
@@ -13,7 +12,6 @@ class Account extends React.Component {
                 </Col>
             </Row>
         </Container>);
-
     }
 }
 
