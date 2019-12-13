@@ -1,11 +1,10 @@
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { userDetails } from '../../actions/userAction';
-
+import { loginUser } from '../../util/fbInit';
 function LoginTitle() {
     const { t } = useTranslation();
     return (
@@ -21,6 +20,7 @@ class Login extends React.Component {
             language: props.language || 'en'
         }
         this.responseFacebook = this.responseFacebook.bind(this);
+        this.doFbLogin = this.doFbLogin.bind(this);
     }
 
     responseFacebook(response) {
@@ -31,9 +31,17 @@ class Login extends React.Component {
         this.props.history.push("/home");
     }
 
+    doFbLogin() {
+        loginUser().then(user => {
+            this.props.storeUserDetails(user.userReducer.userDetails);
+            this.props.history.push("/home");
+        })
+    }
+
     render() {
+
         return (
-            <React.Fragment>
+            <Container>
                 <Row>
                     <Col md="12">
                         <LoginTitle></LoginTitle>
@@ -42,15 +50,12 @@ class Login extends React.Component {
                 </Row>
                 <Row className="app-fb-main">
                     <Col md="12" className="app-fb">
-                        <FacebookLogin
-                            appId={process.env.REACT_APP_FB_APP_ID}
-                            autoLoad={true}
-                            fields="name,email,picture"
-                            callback={this.responseFacebook}
-                        />
+                        <div className="app-fb-btn">
+                            <button onClick={() => { this.doFbLogin() }} className="form-control">Login with FB</button>
+                        </div>
                     </Col>
                 </Row>
-            </React.Fragment>
+            </Container>
         );
     }
 }

@@ -18,7 +18,7 @@ class Header extends React.Component {
     }
 
     clickAccount() {
-        this.props.history.push("/account");
+        this.props.history.push("/account/" + this.props.user.id);
     }
 
     render() {

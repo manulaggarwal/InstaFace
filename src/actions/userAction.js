@@ -9,3 +9,7 @@ export const userDetails = data => dispatch => dispatch({
     type: "USER_DETAILS",
     payload: data
 })
+
+export const userLogin = data => dispatch => {
+
+}
