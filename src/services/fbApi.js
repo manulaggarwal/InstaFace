@@ -8,5 +8,5 @@ export const fetchUserDetails = (fields = { fields: "name,email,picture" }) => n
 })
 
 export const fetchUserPhotos = () => new Promise((resolve, reject) =>
-    window.FB.api("/me?fields=albums{name,count,cover_photo{picture},photos{picture,images,likes.summary(true).filter(stream)}}", data => resolve(data))
+    window.FB.api("/me?fields=albums{name,count,cover_photo{picture},instagram_basic,photos{picture,images,likes.summary(true).filter(stream)}}", data => resolve(data))
 );

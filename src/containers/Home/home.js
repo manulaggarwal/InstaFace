@@ -1,12 +1,22 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { fetchUserPhotos } from '../../actions/userAction';
 import { Card } from '../../components';
 import './home.css';
 import "animate.css/animate.min.css";
 class Home extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.onConnectInstaClick = this.onConnectInstaClick.bind(this);
+    }
+
+    onConnectInstaClick() {
+        const uri = "https://api.instagram.com/oauth/authorize?redirect_uri=https://localhost:3000/auth&scope=user_profile,user_media&response_type=code&app_id=750643575455641";
+        window.location.replace(uri);
+    }
 
     componentDidMount() {
         this.props.fetchUserPhotos();
@@ -46,7 +56,11 @@ class Home extends React.Component {
                         </div>
                     </Col>
                     <div className="home-feed-margin"></div>
-                    <Col md="6">
+                    <Col md="5">
+                        <h3>Instagram Feed</h3>
+                        <hr />
+                        <Button onClick={() => { this.onConnectInstaClick() }} color="primary">Connect Instagram</Button>
+
                     </Col>
                 </Row>
             </Container >);
