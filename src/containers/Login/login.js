@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container,Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { userDetails, userLogin } from '../../actions/userAction';
+import { Logo } from '../../components';
+import titleLogo from '../../components/Logo/logo_resize.png';
+import './login.css'
 
 function LoginTitle() {
     const { t } = useTranslation();
@@ -47,16 +50,13 @@ class Login extends React.Component {
     render() {
         return (
             <Container>
-                <Row>
-                    <Col md="12">
-                        <LoginTitle></LoginTitle>
-                        <hr />
+                <Row className="app-fb-main" style={{ textAlign: "center" }}>
+                    <Col md="12" >
+                        <img alt="insta_logo" src={titleLogo}></img>
                     </Col>
-                </Row>
-                <Row className="app-fb-main">
                     <Col md="12" className="app-fb">
                         <div className="app-fb-btn">
-                            <button onClick={() => { this.doFbLogin() }} className="form-control">Login with FB</button>
+                            <Button color="primary" onClick={() => { this.doFbLogin() }} >Login with <i class="fab fa-facebook-f"></i></Button>
                         </div>
                     </Col>
                 </Row>
