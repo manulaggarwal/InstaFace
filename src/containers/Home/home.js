@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Row, Col, Container, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import { fetchUserPhotos } from '../../actions/userAction';
+import { fetchUserPhotos, instaToken, instaLogin } from '../../actions/userAction';
 import { Card } from '../../components';
 import './home.css';
 import "animate.css/animate.min.css";
+import { getCookie } from '../../util/instaUtil';
+
 class Home extends React.Component {
 
     constructor(props) {
@@ -14,11 +16,14 @@ class Home extends React.Component {
     }
 
     onConnectInstaClick() {
-        const uri = "https://api.instagram.com/oauth/authorize?redirect_uri=https://localhost:3000/auth&scope=user_profile,user_media&response_type=code&app_id=750643575455641";
-        window.location.replace(uri);
+        this.props.instaToken();
     }
 
     componentDidMount() {
+        let cookie = getCookie("insta_access_token");
+        if (cookie) {
+            this.props.instaLogin(cookie);
+        }
         this.props.fetchUserPhotos();
     }
 
@@ -35,40 +40,74 @@ class Home extends React.Component {
         return photoList;
     }
 
-
+    getUserInstagramPhoto() {
+        const { instaMedia } = this.props.userDetails;
+        let instaList = [];
+        instaMedia && instaMedia.data && instaMedia.data.map(m => {
+            instaList.push({ source: m.media_url, mediaType: m.media_type, caption: m.caption })
+            return true;
+        })
+        return instaList;
+    }
 
     render() {
         const photoList = this.getAllPhotoSourceFromAllAlbums();
+        const isInstaConnected = !!this.props.userDetails.instaProfile;
+        const instaMedia = isInstaConnected ? this.getUserInstagramPhoto() : [];
         return (
             <Container>
                 <Row>
-                    <Col md="6">
-                        <h3>Facebook Feed</h3>
-                        <hr />
+                    <Col md={isInstaConnected ? "6" : "12"}>
+                        <div className="home-top-bar">
+                            <span className="home-top-title">Facebook Feed</span>
+                            {
+                                isInstaConnected ? null : (
+                                    <span className="home-top-insta-connect">
+                                        <Button onClick={() => { this.onConnectInstaClick() }} color="primary">Connect Instagram</Button>
+                                    </span>
+                                )
+                            }
+
+                            <hr />
+                        </div>
                         <div className="home-fb-feed-main">
+                            <hr />
                             <Row>
                                 {
                                     photoList.map((l, i) => (
-                                        <Card key={i} list={l}></Card>
+                                        <Card isInstaConnected={isInstaConnected} key={i} list={l}></Card>
                                     ))
                                 }
                             </Row>
                         </div>
                     </Col>
-                    <div className="home-feed-margin"></div>
-                    <Col md="5">
-                        <h3>Instagram Feed</h3>
-                        <hr />
-                        <Button onClick={() => { this.onConnectInstaClick() }} color="primary">Connect Instagram</Button>
+                    {
+                        isInstaConnected ? (
+                            <Col md="6">
+                                <h3>Instagram Feed</h3>
+                                <hr />
+                                <div className="home-fb-feed-main">
+                                    <Row>
+                                        {
+                                            instaMedia.map((l, i) => (
+                                                <Card loadingInstaPhotos={true} isInstaConnected={isInstaConnected} key={i} list={l}></Card>
+                                            ))
+                                        }
+                                    </Row>
+                                </div>
+                            </Col>
+                        ) : null
+                    }
 
-                    </Col>
                 </Row>
             </Container >);
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchUserPhotos: () => dispatch(fetchUserPhotos())
+    fetchUserPhotos: () => dispatch(fetchUserPhotos()),
+    instaToken: () => dispatch(instaToken()),
+    instaLogin: (cookie) => dispatch(instaLogin(cookie))
 });
 
 const mapStateToProps = state => ({

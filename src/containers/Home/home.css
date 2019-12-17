@@ -15,3 +15,13 @@
 .home-background {
     background:white;
 }
+.home-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-top-title {
+    flex: 1;
+    font-size: x-large;
+    font-weight: 500;
+}

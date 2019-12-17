@@ -4,11 +4,26 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import './cards.css';
 
 const Cards = (props) => (
-    <Col className="card-fb-feed-photo" md="12">
+    <Col className="card-fb-feed-photo" md={props.isInstaConnected ? "6" : "3"}>
         <ScrollAnimation animateIn="fadeIn" >
-            <Image src={props.list.source} width="225" height="225"></Image>
+            {
+                props.list.mediaType === "VIDEO" ? (
+                    <video width="225" height="225" controls>
+                        <source src={props.list.source} type="video/mp4"></source>
+                    </video>
+                ) : (
+                        <Image alt=":(" src={props.list.source} width="225" height="225"></Image>
+                    )
+            }
+
+
             <div>
-                <span>Likes: {props.list.likes}</span>
+                {
+                    props.loadingInstaPhotos ? (<span>Likes: {props.list.caption}</span>) : (
+                        <span>Likes: {props.list.likes}</span>
+                    )
+                }
+
             </div>
         </ScrollAnimation>
     </Col>
