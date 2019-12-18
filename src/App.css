@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  margin: auto;
+  margin-top: 10%;
+  border: 1px solid;
+  height: 250px;
+  width: 25%;
 }
 
 .App-logo {
@@ -15,6 +20,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.app-header-spacing {
+  margin: 5%;
 }
 
 .App-link {

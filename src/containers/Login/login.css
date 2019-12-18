@@ -1,0 +1,30 @@
+
+.login-btn {
+        background: #4267b2;
+        border-radius: 5px;
+        color: white;
+        height: 40px;
+        text-align: center;
+        width: 250px;
+    }
+
+.login-fb-btn {
+    width: 35%;
+    font-size: larger;
+}
+
+.login-logo-title {
+    margin: 0px 0px 10px 0px;
+}
+
+.login-hero-image {
+    width: 100%;
+    padding: 0px 0px 0px 0px;
+}
+
+.login-logo-tag {
+    font-size: larger;
+    color: gray;
+    font-weight: 500;
+    margin-bottom: 20px;
+}

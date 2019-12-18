@@ -1,0 +1,63 @@
+.header-main {
+    border-bottom: 1px solid gray;
+    background: #089de3;
+    box-shadow: 0px 1px 5px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.header-user-icon {
+    padding: 17.5px;
+}
+
+.header-user-icon:hover {
+    cursor: pointer;
+}
+
+.header-user-icon>i{
+    font-size: larger;
+}
+
+.header-user-pic {
+    padding: 0;
+    text-align: right;
+}
+
+.header-user-pic>img {
+    border-radius: 24px;
+}
+
+.header-language {
+    background: inherit;
+}
+
+.header-search {
+    margin-top: 10.5px;
+    width: 75%;
+}
+
+.header-search-icon-button-pos {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    border-radius: 0px;
+    background-color: inherit;
+    border: none;
+    left: 70%;
+    color: #089de3;
+}
+
+
+.search-input input {
+    width: 100%;
+    border: none;
+    vertical-align: sub;
+    border-radius: 4px;
+    padding: 5px;
+}

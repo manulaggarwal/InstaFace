@@ -1,3 +1,7 @@
 {
-    "title": "Welcome to react using react-i18next"
+    "title": "Welcome to react using react-i18next",
+    "login-with-fb": "Login with",
+    "login-tag-line": "One stop media search for Facebook and Instagram.",
+    "connect": "Connect",
+    "search-placeholder": "Search Albums, Media, Caption here..."
 }
