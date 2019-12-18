@@ -27,7 +27,7 @@ class Header extends React.Component {
             <Row className="header-main" className="header-background">
                 <Col md="8">
                     <div className="header-logo">
-                        <Logo></Logo>
+                    <Logo w="60px" h="60px"></Logo>
                     </div>
                 </Col>
                 <Col md="2">
@@ -55,7 +55,7 @@ class Header extends React.Component {
                 <Row className="header-main">
                     <Col md="10">
                         <div className="header-logo">
-                            <Logo width="60px" height="60px"></Logo>
+                            <Logo w="60px" h="60px"></Logo>
                         </div>
                     </Col>
                     <Col md="2" style={{ margin: "auto" }}>

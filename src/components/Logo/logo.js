@@ -1,10 +1,14 @@
 import React from 'react';
 import './logo.css';
+
 import instaLogo from './logo-removebg.png';
 
-export default ({ width = "", height = "" }) => (
+export default ({w="", h=""}) => (
     <div className="logo-main">
         <span>
-            <img alt="fb_logo" style={{ width: "130px", height: "30px" }} src={instaLogo}></img>
+            <img alt="insta_logo" width={w} height={h} src={instaLogo}></img>
         </span>
+        <span style={{color:"white"}}>
+            InstaFace
+        </span> 
     </div>)

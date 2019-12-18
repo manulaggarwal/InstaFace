@@ -1,11 +1,12 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Row, Col, Container,Button } from 'react-bootstrap';
+import { Row, Col, Container, Button, Image } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { userDetails, userLogin } from '../../actions/userAction';
 import { Logo } from '../../components';
 import titleLogo from '../../components/Logo/logo_resize.png';
+import loginPageImage from './hero.jpg';
 import './login.css'
 
 function LoginTitle() {
@@ -49,18 +50,31 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Row className="app-fb-main" style={{ textAlign: "center" }}>
-                    <Col md="12" >
-                        <img alt="insta_logo" src={titleLogo}></img>
-                    </Col>
-                    <Col md="12" className="app-fb">
-                        <div className="app-fb-btn">
-                            <Button color="primary" onClick={() => { this.doFbLogin() }} >Login with <i class="fab fa-facebook-f"></i></Button>
-                        </div>
+            <React.Fragment>
+                <Container>
+                    <Row className="app-fb-main" style={{ textAlign: "center" }}>
+                        <Col md="12" >
+                            <Image style={{width: "35%"}} alt="insta_logo" src={titleLogo}></Image>
+                            <div className="login-logo-title">
+                                <h1>InstaFace</h1>
+                            </div>
+                            <div className="login-logo-tag">
+                                <span>One stop media search for Facebook and Instagram.</span>
+                            </div>
+                        </Col>
+                        <Col md="12" className="app-fb">
+                            <div className="app-fb-btn">
+                                <Button className="login-fb-btn" color="primary" onClick={() => { this.doFbLogin() }} >Login with <i className="fab fa-facebook-f"></i></Button>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+                <Row>
+                    <Col md="12">
+                        <Image className="login-hero-image" alt="Login Hero Image" src={loginPageImage}></Image>
                     </Col>
                 </Row>
-            </Container>
+            </React.Fragment>
         );
     }
 }

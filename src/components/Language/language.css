@@ -4,6 +4,7 @@
 
 .language-main .form-control {
     border: none;
+    font-weight: 500;
 }
 
 .language-main .form-control:focus {
