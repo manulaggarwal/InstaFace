@@ -23,8 +23,13 @@ const setCookie = (key, value) => {
     document.cookie = key + '=' + value + '; expires=' + now.toUTCString() + '; path=/';
 }
 
+export const deleteCookie = (key) => {
+    document.cookie = key + '=; max-age=-1';
+}
+
 export const storeInstaAccessToken = params => {
     const keys = getJsonFromUrl(params);
+    if (window.document.cookie.includes("insta_access_token")) return true;
     if (!keys.error && keys.code) {
         setCookie("insta_access_token", keys.code);
         return true;

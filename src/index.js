@@ -10,6 +10,9 @@ import { createBrowserHistory } from 'history';
 import './i18n';
 import { fbInit, canUserAutoLogin, fetchUserDetails } from './util/fbInit';
 import App from './App';
+import { deleteCookie } from './util/instaUtil';
+
+deleteCookie("insta_access_token");
 
 fbInit().then(() => {
     canUserAutoLogin().then(flag => {

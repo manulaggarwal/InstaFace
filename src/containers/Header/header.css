@@ -12,7 +12,7 @@
 }
 
 .header-user-icon {
-    padding: 25px;
+    padding: 17.5px;
 }
 
 .header-user-icon:hover {
@@ -34,4 +34,30 @@
 
 .header-language {
     background: inherit;
+}
+
+.header-search {
+    margin-top: 10.5px;
+    width: 75%;
+}
+
+.header-search-icon-button-pos {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    border-radius: 0px;
+    background-color: inherit;
+    border: none;
+    left: 70%;
+    color: #089de3;
+}
+
+
+.search-input input {
+    width: 100%;
+    border: none;
+    vertical-align: sub;
+    border-radius: 4px;
+    padding: 5px;
 }

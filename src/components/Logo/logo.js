@@ -3,12 +3,14 @@ import './logo.css';
 
 import instaLogo from './logo-removebg.png';
 
-export default ({w="", h=""}) => (
+export default ({ w = "", h = "" }) => (
     <div className="logo-main">
-        <span>
-            <img alt="insta_logo" width={w} height={h} src={instaLogo}></img>
+        <a href="/home" style={{ textDecoration: "none" }}>
+            <span>
+                <img alt="insta_logo" width={w} height={h} src={instaLogo}></img>
+            </span>
+            <span style={{ color: "white" }}>
+                InstaFace
         </span>
-        <span style={{color:"white"}}>
-            InstaFace
-        </span> 
+        </a>
     </div>)

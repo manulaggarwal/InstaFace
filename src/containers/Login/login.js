@@ -4,16 +4,18 @@ import { connect } from "react-redux";
 import { Row, Col, Container, Button, Image } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { userDetails, userLogin } from '../../actions/userAction';
-import { Logo } from '../../components';
 import titleLogo from '../../components/Logo/logo_resize.png';
 import loginPageImage from './hero.jpg';
-import './login.css'
+import './login.css';
 
-function LoginTitle() {
+function LoginTagTitle() {
     const { t } = useTranslation();
-    return (
-        <h3><strong>{t('login-title')}</strong></h3>
-    )
+    return (<span>{t("login-tag-line")}</span>)
+}
+
+function LoginWithFbTitle() {
+    const { t } = useTranslation();
+    return (<span>{t("login-with-fb")}</span>)
 }
 
 class Login extends React.Component {
@@ -54,17 +56,17 @@ class Login extends React.Component {
                 <Container>
                     <Row className="app-fb-main" style={{ textAlign: "center" }}>
                         <Col md="12" >
-                            <Image style={{width: "35%"}} alt="insta_logo" src={titleLogo}></Image>
+                            <Image style={{ width: "35%" }} alt="insta_logo" src={titleLogo}></Image>
                             <div className="login-logo-title">
                                 <h1>InstaFace</h1>
                             </div>
                             <div className="login-logo-tag">
-                                <span>One stop media search for Facebook and Instagram.</span>
+                                <LoginTagTitle></LoginTagTitle>
                             </div>
                         </Col>
                         <Col md="12" className="app-fb">
                             <div className="app-fb-btn">
-                                <Button className="login-fb-btn" color="primary" onClick={() => { this.doFbLogin() }} >Login with <i className="fab fa-facebook-f"></i></Button>
+                                <Button className="login-fb-btn" color="primary" onClick={() => { this.doFbLogin() }} ><LoginWithFbTitle></LoginWithFbTitle>&nbsp;<i className="fab fa-facebook-f"></i></Button>
                             </div>
                         </Col>
                     </Row>

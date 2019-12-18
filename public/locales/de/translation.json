@@ -1,4 +1,7 @@
 {
     "title": "Willkommen, um mit react-i18next zu reagieren",
-    "login-title": "Einloggen"
+    "login-with-fb": "Einloggen mit",
+    "login-tag-line": "Mediensuche aus einer Hand für Facebook und Instagram.",
+    "connect": "Verbinden",
+    "search-placeholder": "Suche nach Alben, Medien, Bildunterschriften hier....."
 }

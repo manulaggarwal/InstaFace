@@ -1,4 +1,8 @@
 .card-fb-feed-photo {
     margin-top: 20px;
-    border-bottom: 1px solid lightgray;
+}
+
+.card-fb-feed-photo img:hover {
+    box-shadow: 1px 2px 5px 1px black;
+    cursor: pointer;
 }
