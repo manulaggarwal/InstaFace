@@ -8,6 +8,11 @@ export const changeLanguage = data => dispatch => dispatch({
     }
 });
 
+export const userLogout = () => dispatch => dispatch({
+    type: "USER_LOGOUT",
+    payload: {}
+})
+
 export const userDetails = data => dispatch => dispatch({
     type: "USER_DETAILS",
     payload: data
