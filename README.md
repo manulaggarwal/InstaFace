@@ -28,7 +28,7 @@ below.
     1.3.21
    
  ### Usage
- `git clone git@github.com:manulaggarwal/InstaFace.git`
+ `git clone https://github.com/manulaggarwal/InstaFace.git`
  
  `cd InstaFace`
  
